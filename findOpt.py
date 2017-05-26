@@ -9,7 +9,9 @@ def helper(array, N, state):
 		else:
 			localReward += idx + 1
 	feedBack = state * -1.0 * localLoss / N + localReward * 1.0 / N
-	if feedBack > 0:
+	# print(feedBack)
+	if feedBack > 0.01:
+		print(feedBack)
 		expectedReturn = 0
 		for idx, val in enumerate(array):
 			if val == 1:
@@ -19,5 +21,17 @@ def helper(array, N, state):
 	else:
 		return state
 
-
-print(findOpt([1,0,1,1,0,1], 6))
+input = [
+	# ([0,1,1,0], 4),
+	# ([0,1,0,1,1,0,0,1,1,0,0], 11),
+	# ([0,0,1,1,1,1,0,1,0,1,1,0,0,1], 14),
+	# ([0,1,0,0,0,1,0,0,1,0,1,1,0,0,1,1,1,1,1,1,1,0,0,1,1,1,0,0], 28),
+	# ([0,0,0,1,0,1,1,1], 8),
+	# ([0,0,0,0,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1], 21),
+	# ([0,0,0,0,1,1,1,0,0,1,1,1,1,0,1,0,1,1,1,1,1,1], 22),
+	# ([0,1,0,0,1,0,1,1,0,1,0,1,0,1,1,0], 16),
+	# ([0,1,1,0,1,0,1,0,1,1,0,0,0,1,0,0,0,0,1], 19),
+	([0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,1], 27)
+	]
+for idx, data in enumerate(input):
+	print("Q" + str(idx) + " : " + str(findOpt(data[0], data[1])))
